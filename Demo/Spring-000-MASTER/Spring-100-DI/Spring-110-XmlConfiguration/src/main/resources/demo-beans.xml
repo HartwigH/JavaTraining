@@ -1,0 +1,46 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<bean id="DemoServiceBean" name="DemoServiceName"
+		class="com.knits.spring.sf.service.DemoService">
+		<property name="productDao" ref="ProductDao" />
+	</bean>
+
+
+	<bean id="ProductDao"
+		class="com.knits.spring.sf.dao.ProductDaoImpl">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+
+	<bean id="datasource" name="datasourceName"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="Url"
+			value="jdbc:mysql://localhost:3306/sales_finder" />
+		<property name="Username" value="root" />
+		<property name="Password" value="toor" />
+		<property name="MinIdle" value="5" />
+		<property name="MaxIdle" value="10" />
+		<property name="MaxOpenPreparedStatements" value="100" />
+	</bean>
+	<!-- 
+		BasicDataSource ds = new BasicDataSource(); 
+		ds.setDriverClassName("com.mysql.jdbc.Driver"); 
+		ds.setUrl("jdbc:mysql://localhost:3306/EShopMusic"); 
+		ds.setUsername("root"); 
+		ds.setPassword("stefan0"); 
+		ds.setMinIdle(5); 
+		ds.setMaxIdle(10); 
+		ds.setMaxOpenPreparedStatements(100); 
+		return ds; 
+	-->
+
+</beans>
